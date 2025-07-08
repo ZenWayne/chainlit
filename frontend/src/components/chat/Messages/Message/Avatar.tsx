@@ -33,7 +33,8 @@ const MessageAvatar = ({ author, hide, isError }: Props) => {
   }, [config, chatProfile]);
 
   const avatarUrl = useMemo(() => {
-    if (config?.ui?.default_avatar_file_url) return config?.ui?.default_avatar_file_url;
+    if (config?.ui?.default_avatar_file_url)
+      return config?.ui?.default_avatar_file_url;
     const isAssistant = !author || author === config?.ui.name;
     if (isAssistant && selectedChatProfile?.icon) {
       return selectedChatProfile.icon;
@@ -71,5 +72,8 @@ const MessageAvatar = ({ author, hide, isError }: Props) => {
     </span>
   );
 };
+
+// 设置组件的 displayName 用于调试
+MessageAvatar.displayName = 'MessageAvatar';
 
 export { MessageAvatar };

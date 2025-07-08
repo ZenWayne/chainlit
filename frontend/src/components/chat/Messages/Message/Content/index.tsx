@@ -5,6 +5,7 @@ import type { IMessageElement, IStep } from '@chainlit/react-client';
 
 import { CURSOR_PLACEHOLDER } from '@/components/BlinkingCursor';
 import { Markdown } from '@/components/Markdown';
+import { Badge } from '@/components/ui/badge';
 
 import { InlinedElements } from './InlinedElements';
 
@@ -94,6 +95,11 @@ const MessageContent = memo(
 
     return (
       <div className="message-content w-full flex flex-col gap-2">
+        {message.type !== 'user_message' && (
+          <Badge className="self-start">
+            {message.metadata?.avatarName || message.name} :
+          </Badge>
+        )}
         {!!inputMarkdown || output ? markdownContent : null}
         <InlinedElements elements={outputInlinedElements} />
       </div>
